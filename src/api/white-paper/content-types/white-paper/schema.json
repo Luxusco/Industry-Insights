@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "white_papers",
+  "info": {
+    "singularName": "white-paper",
+    "pluralName": "white-papers",
+    "displayName": "White Paper"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "WhitePaperFile": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
