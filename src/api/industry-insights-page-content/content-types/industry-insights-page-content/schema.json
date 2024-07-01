@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "industry_insights_page_contents",
+  "info": {
+    "singularName": "industry-insights-page-content",
+    "pluralName": "industry-insights-page-contents",
+    "displayName": "Industry Insights Page Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "middlePageText": {
+      "type": "text"
+    },
+    "moreContentTitle": {
+      "type": "string"
+    },
+    "baseSeo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

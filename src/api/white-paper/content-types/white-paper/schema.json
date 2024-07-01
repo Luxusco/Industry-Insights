@@ -4,22 +4,33 @@
   "info": {
     "singularName": "white-paper",
     "pluralName": "white-papers",
-    "displayName": "White Paper"
+    "displayName": "White Paper",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
-    "WhitePaperFile": {
+    "whitePaperFile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "files"
-      ],
+      ]
+    },
+    "icon": {
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
     }
   }
 }

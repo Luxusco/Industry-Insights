@@ -4,28 +4,28 @@
   "info": {
     "singularName": "upcoming-auction",
     "pluralName": "upcoming-auctions",
-    "displayName": "Upcoming Auction"
+    "displayName": "Upcoming Auction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
-    "AuctionDate": {
-      "type": "date",
-      "required": false
-    },
-    "Description": {
+    "description": {
       "type": "text"
     },
-    "Place": {
+    "place": {
       "type": "string"
     },
-    "LinkToAuction": {
+    "linkToAuction": {
       "type": "text"
+    },
+    "auctionDate": {
+      "type": "string"
     }
   }
 }

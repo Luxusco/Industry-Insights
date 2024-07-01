@@ -23,6 +23,9 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "metaKeywords": {
+      "type": "text"
     }
   }
 }

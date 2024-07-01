@@ -815,7 +815,8 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     blocks: Attribute.DynamicZone<
       ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
     >;
-    BaseSEO: Attribute.Component<'shared.seo'>;
+    baseSeo: Attribute.Component<'shared.seo'>;
+    headlineImage: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -854,6 +855,14 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::article.article'
     >;
     description: Attribute.Text;
+    cover: Attribute.Media;
+    baseSeo: Attribute.Component<'shared.seo'>;
+    headlineImage: Attribute.Media;
+    featured_articles: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::featured-article.featured-article'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -871,6 +880,85 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiFeaturedArticleFeaturedArticle
+  extends Schema.CollectionType {
+  collectionName: 'featured_articles';
+  info: {
+    singularName: 'featured-article';
+    pluralName: 'featured-articles';
+    displayName: 'Featured Article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.String;
+    slug: Attribute.UID<'api::featured-article.featured-article', 'title'>;
+    cover: Attribute.Media;
+    blocks: Attribute.DynamicZone<
+      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
+    >;
+    BaseSEO: Attribute.Component<'shared.seo'>;
+    headlineImage: Attribute.Media;
+    feature_category: Attribute.Relation<
+      'api::featured-article.featured-article',
+      'manyToOne',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::featured-article.featured-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::featured-article.featured-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiIndustryInsightsPageContentIndustryInsightsPageContent
+  extends Schema.SingleType {
+  collectionName: 'industry_insights_page_contents';
+  info: {
+    singularName: 'industry-insights-page-content';
+    pluralName: 'industry-insights-page-contents';
+    displayName: 'Industry Insights Page Content';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    middlePageText: Attribute.Text;
+    moreContentTitle: Attribute.String;
+    baseSeo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::industry-insights-page-content.industry-insights-page-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::industry-insights-page-content.industry-insights-page-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiUpcomingAuctionUpcomingAuction
   extends Schema.CollectionType {
   collectionName: 'upcoming_auctions';
@@ -878,16 +966,17 @@ export interface ApiUpcomingAuctionUpcomingAuction
     singularName: 'upcoming-auction';
     pluralName: 'upcoming-auctions';
     displayName: 'Upcoming Auction';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String;
-    AuctionDate: Attribute.Date;
-    Description: Attribute.Text;
-    Place: Attribute.String;
-    LinkToAuction: Attribute.Text;
+    title: Attribute.String;
+    description: Attribute.Text;
+    place: Attribute.String;
+    linkToAuction: Attribute.Text;
+    auctionDate: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -912,13 +1001,15 @@ export interface ApiWhitePaperWhitePaper extends Schema.CollectionType {
     singularName: 'white-paper';
     pluralName: 'white-papers';
     displayName: 'White Paper';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String;
-    WhitePaperFile: Attribute.Media;
+    title: Attribute.String;
+    whitePaperFile: Attribute.Media;
+    icon: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -957,6 +1048,8 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
+      'api::featured-article.featured-article': ApiFeaturedArticleFeaturedArticle;
+      'api::industry-insights-page-content.industry-insights-page-content': ApiIndustryInsightsPageContentIndustryInsightsPageContent;
       'api::upcoming-auction.upcoming-auction': ApiUpcomingAuctionUpcomingAuction;
       'api::white-paper.white-paper': ApiWhitePaperWhitePaper;
     }
