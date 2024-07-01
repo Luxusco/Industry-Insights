@@ -817,6 +817,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     >;
     baseSeo: Attribute.Component<'shared.seo'>;
     headlineImage: Attribute.Media;
+    featured: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -858,11 +861,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     cover: Attribute.Media;
     baseSeo: Attribute.Component<'shared.seo'>;
     headlineImage: Attribute.Media;
-    featured_articles: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::featured-article.featured-article'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -873,51 +871,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiFeaturedArticleFeaturedArticle
-  extends Schema.CollectionType {
-  collectionName: 'featured_articles';
-  info: {
-    singularName: 'featured-article';
-    pluralName: 'featured-articles';
-    displayName: 'Featured Article';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.String;
-    slug: Attribute.UID<'api::featured-article.featured-article', 'title'>;
-    cover: Attribute.Media;
-    blocks: Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
-    BaseSEO: Attribute.Component<'shared.seo'>;
-    headlineImage: Attribute.Media;
-    feature_category: Attribute.Relation<
-      'api::featured-article.featured-article',
-      'manyToOne',
-      'api::category.category'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::featured-article.featured-article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::featured-article.featured-article',
       'oneToOne',
       'admin::user'
     > &
@@ -1048,7 +1001,6 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
-      'api::featured-article.featured-article': ApiFeaturedArticleFeaturedArticle;
       'api::industry-insights-page-content.industry-insights-page-content': ApiIndustryInsightsPageContentIndustryInsightsPageContent;
       'api::upcoming-auction.upcoming-auction': ApiUpcomingAuctionUpcomingAuction;
       'api::white-paper.white-paper': ApiWhitePaperWhitePaper;

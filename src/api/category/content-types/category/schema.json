@@ -51,12 +51,6 @@
         "images",
         "videos"
       ]
-    },
-    "featured_articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::featured-article.featured-article",
-      "mappedBy": "feature_category"
     }
   }
 }

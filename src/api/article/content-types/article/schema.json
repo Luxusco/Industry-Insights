@@ -61,6 +61,11 @@
         "images",
         "videos"
       ]
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
