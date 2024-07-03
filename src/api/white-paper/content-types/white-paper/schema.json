@@ -31,6 +31,9 @@
         "images",
         "videos"
       ]
+    },
+    "buttonText": {
+      "type": "string"
     }
   }
 }

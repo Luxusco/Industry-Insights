@@ -930,6 +930,7 @@ export interface ApiUpcomingAuctionUpcomingAuction
     place: Attribute.String;
     linkToAuction: Attribute.Text;
     auctionDate: Attribute.String;
+    buttonText: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -963,6 +964,7 @@ export interface ApiWhitePaperWhitePaper extends Schema.CollectionType {
     title: Attribute.String;
     whitePaperFile: Attribute.Media;
     icon: Attribute.Media;
+    buttonText: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
