@@ -820,6 +820,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     featured: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    copyrightNotice: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
