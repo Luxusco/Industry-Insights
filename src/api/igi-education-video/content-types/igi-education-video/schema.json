@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "igi_education_videos",
+  "info": {
+    "singularName": "igi-education-video",
+    "pluralName": "igi-education-videos",
+    "displayName": "IGI Education Video",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "linkToVideo": {
+      "type": "string",
+      "required": true
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "WATCH"
+    }
+  }
+}

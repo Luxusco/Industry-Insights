@@ -879,6 +879,40 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiIgiEducationVideoIgiEducationVideo
+  extends Schema.CollectionType {
+  collectionName: 'igi_education_videos';
+  info: {
+    singularName: 'igi-education-video';
+    pluralName: 'igi-education-videos';
+    displayName: 'IGI Education Video';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    linkToVideo: Attribute.String & Attribute.Required;
+    buttonText: Attribute.String & Attribute.DefaultTo<'WATCH'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::igi-education-video.igi-education-video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::igi-education-video.igi-education-video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiIndustryInsightsPageContentIndustryInsightsPageContent
   extends Schema.SingleType {
   collectionName: 'industry_insights_page_contents';
@@ -1004,6 +1038,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
+      'api::igi-education-video.igi-education-video': ApiIgiEducationVideoIgiEducationVideo;
       'api::industry-insights-page-content.industry-insights-page-content': ApiIndustryInsightsPageContentIndustryInsightsPageContent;
       'api::upcoming-auction.upcoming-auction': ApiUpcomingAuctionUpcomingAuction;
       'api::white-paper.white-paper': ApiWhitePaperWhitePaper;
