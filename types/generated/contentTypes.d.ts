@@ -803,7 +803,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     title: Attribute.String;
     description: Attribute.Text &
       Attribute.SetMinMaxLength<{
-        maxLength: 80;
+        maxLength: 255;
       }>;
     slug: Attribute.UID<'api::article.article', 'title'>;
     cover: Attribute.Media;
