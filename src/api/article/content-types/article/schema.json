@@ -72,6 +72,9 @@
     },
     "originalArticleUrl": {
       "type": "string"
+    },
+    "originalArticleDate": {
+      "type": "date"
     }
   }
 }

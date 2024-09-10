@@ -822,6 +822,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       Attribute.DefaultTo<false>;
     copyrightNotice: Attribute.RichText;
     originalArticleUrl: Attribute.String;
+    originalArticleDate: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
